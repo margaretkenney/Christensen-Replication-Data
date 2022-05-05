@@ -1,0 +1,39 @@
+---
+title: "Aronow and Samii (2015) extension"
+author: "Maggie Kenney"
+date: "4/18/2022"
+output: html_document
+---
+
+```{r}
+tables <- readRDS("../original reproduction package/replication/data/did-price-acled-eiti.rds")
+head(tables)
+
+library(data.table)
+library(Rcpp)
+library(fixest)
+library(dtplyr)
+library(here)
+library(dplyr)
+library(maptools)
+library(foreign)
+```
+## Christensen does not use a great deal of covariates in his analysis. The only controls utilized are fixed effects - country-year and cell.
+
+```{r}
+X.vars <- c("cell_number_5x5", "country_year")
+# look at year vs. country year
+X.vars.f <- paste(X.vars,collapse="+")
+# regression of outcome on all covariates (including treatment)
+fit.y <- lm(as.formula(paste("ind_protest ~ sum_mines +", X.vars.f, sep="")), data=tables)
+# regression of treatment assignment on the covariates
+fit.d <- lm(as.formula(paste("sum_mines~", X.vars.f, sep="")), data=tables)
+# ind.protest should be replaced EITI
+d.tilde <- as.numeric(residuals(fit.d))
+w <- d.tilde^2
+w1 <- tapply(w, tables$country_year, mean)
+print(w1)
+hist(w1)
+```
+
+

@@ -1,0 +1,5 @@
+load("/Users/margaretkenney/Documents/GitHub/ps231b_reproduction_group2/original reproduction package/replication/data/prices.rds")
+load("/Users/margaretkenney/Documents/GitHub/ps231b_reproduction_group2/original reproduction package/replication/data/did-price-acled-eiti.rds")
+load("/Users/margaretkenney/Documents/GitHub/ps231b_reproduction_group2/original reproduction package/replication/data/wgi-eiti-country-year.rds")
+load("/Users/margaretkenney/Documents/GitHub/ps231b_reproduction_group2/original reproduction package/replication/data/did-gdelt.rds")
+load("/Users/margaretkenney/Documents/GitHub/ps231b_reproduction_group2/original reproduction package/replication/data/wgi-eiti-country-year.rds")
